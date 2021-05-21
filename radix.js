@@ -18,15 +18,15 @@ function mostDigits(nums) {
 function radixSort(nums) {
 	let maxDigitCount = mostDigits(nums);
 	for (let i = 0; i < maxDigitCount; i++) {
-		let digitBuckets = Array.from({ length: 10 }, () => []);
-		for (let i = 0; i < nums.length; i++) {
-			let num = nums[i];
-			let digit = getDigit(num, k);
-			digitBuckets[digit].push(num);
+		let buckets = Array.from({ length: 10 }, () => []);
+		for (let j = 0; j < nums.length; j++) {
+			let num = nums[j];
+			let digit = getDigit(num, i);
+			buckets[digit].push(num);
 		}
-		nums = [].concat(...digitBuckets);
+		nums = [].concat(...buckets);
 	}
 	return nums;
 }
 
-module.exports = radixSort;
+module.exports = { getDigit, digitCount, mostDigits, radixSort };
